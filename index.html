@@ -246,7 +246,7 @@
   <header>
     <div class="eyebrow">Sparklight Sourcebook</div>
     <h1>Decision Code Builder</h1>
-    <p class="subhead">Create a clean base reference ID for brand, copy, legal, product, and production decisions.</p>
+    <p class="subhead">Create a clean base reference ID for brand, copy, legal, product, and production decisions. If duplicate records exist on the same day with the same code, the database can append .002, .003, and so on.</p>
   </header>
 
   <main>
@@ -573,9 +573,12 @@
 
     function emailCurrentRecord() {
       const record = getRecordData();
-      const to = 'Todd.Farrell@cableone.biz';
-      const subject = encodeURIComponent(`Sourcebook Update: ${record.code}`);
-      const body = encodeURIComponent(record.summary + `\n\nApproved By: ${record.approvedBy}\nSupersedes: ${record.supersedes}`);
+      const to = 'farrellt@sparklight.biz';
+      const subject = encodeURIComponent(`Sourcebook Rule Update: ${record.code} - ${record.title || 'Untitled Record'}`);
+      const body = encodeURIComponent(record.summary + `
+
+Approved By: ${record.approvedBy}
+Supersedes: ${record.supersedes}`);
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     }
 

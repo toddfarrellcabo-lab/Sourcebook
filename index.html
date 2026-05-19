@@ -575,10 +575,21 @@
       const record = getRecordData();
       const to = 'farrellt@sparklight.biz';
       const subject = encodeURIComponent(`Sourcebook Rule Update: ${record.code} - ${record.title || 'Untitled Record'}`);
-      const body = encodeURIComponent(record.summary + `
+      const body = encodeURIComponent(
+        `Sourcebook Rule Update
 
-Approved By: ${record.approvedBy}
-Supersedes: ${record.supersedes}`);
+` +
+        `Code: **${record.code}**
+
+` +
+        `${record.summary}
+
+` +
+        `Approved By: ${record.approvedBy}
+
+` +
+        `Supersedes: ${record.supersedes}`
+      );
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
     }
 
